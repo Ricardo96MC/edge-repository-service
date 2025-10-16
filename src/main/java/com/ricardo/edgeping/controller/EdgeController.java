@@ -2,6 +2,7 @@ package com.ricardo.edgeping.controller;
 
 import com.ricardo.edgeping.model.Edge;
 import com.ricardo.edgeping.service.EdgeService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +11,6 @@ import java.util.UUID;
 
 /**
  * This controller will define REST endpoints for managing Edge records
- *
  * Routes:
  * - POST   /api/v1/edges   -> CREATE a new edge
  * - GET    /api/v1/edges   -> GET all edges
@@ -29,7 +29,7 @@ public class EdgeController {
 
     // Create a new edge POST
     @PostMapping
-    public Edge create(@RequestBody Edge edge) {
+    public Edge create(@Valid @RequestBody Edge edge) {
         return edgeService.create(edge);
     }
 
@@ -57,7 +57,7 @@ public class EdgeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Edge> update(@PathVariable UUID id, @RequestBody Edge edge) {
+    public ResponseEntity<Edge> update(@PathVariable UUID id, @Valid @RequestBody Edge edge) {
         return edgeService.updateById(id, edge)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());

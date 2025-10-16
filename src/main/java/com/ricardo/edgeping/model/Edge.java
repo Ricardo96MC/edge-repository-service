@@ -2,14 +2,15 @@ package com.ricardo.edgeping.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import org.hibernate.annotations.Collate;
 import org.hibernate.annotations.UuidGenerator;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.time.Instant;
 import java.util.UUID;
 
 /**
- * Thhis Edge entity will represent a connection between two systems or services.
+ * This Edge entity will represent a connection between two systems or services.
  * Each record corresponds to one row in the 'edge' table
  */
 @Entity
@@ -24,14 +25,20 @@ public class Edge {
     private UUID id;
 
     //Where our connection is coming from/originates
+    @NotBlank(message = "Source was not be blank.")
+    @Size(max = 100, message = "Source must be 100 characters or less.")
     @Column(nullable = false)
     @JsonProperty("source")
     private String source;
 
+    @NotBlank(message = "Target was not be blank.")
+    @Size(max = 100, message = "Target must be 100 characters or less.")
     @Column(nullable = false)
     @JsonProperty("target")
     private String target;
 
+    @NotBlank(message = "URL was not be blank.")
+    @Size(message = "URL must be 100 characters or blank.")
     @Column(nullable = false)
     @JsonProperty("url")
     private String url;

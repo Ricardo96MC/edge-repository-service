@@ -52,6 +52,7 @@ public class EdgeService {
                   existingEdge.setSource(edge.getSource());
                   existingEdge.setTarget(edge.getTarget());
                   existingEdge.setUrl(edge.getUrl());
+                  existingEdge.setCreatedAt(java.time.Instant.now());
                   return edgeRepository.save(existingEdge);
               });
     }

@@ -25,19 +25,19 @@ public class Edge {
     private UUID id;
 
     //Where our connection is coming from/originates
-    @NotBlank(message = "Source was not be blank.")
+    @NotBlank(message = "Source must not be blank.")
     @Size(max = 100, message = "Source must be 100 characters or less.")
     @Column(nullable = false)
     @JsonProperty("source")
     private String source;
 
-    @NotBlank(message = "Target was not be blank.")
+    @NotBlank(message = "Target must not be blank.")
     @Size(max = 100, message = "Target must be 100 characters or less.")
     @Column(nullable = false)
     @JsonProperty("target")
     private String target;
 
-    @NotBlank(message = "URL was not be blank.")
+    @NotBlank(message = "URL must not be blank.")
     @Size(message = "URL must be 100 characters or blank.")
     @Column(nullable = false)
     @JsonProperty("url")

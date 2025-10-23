@@ -47,6 +47,11 @@ public class Edge {
     @Column(name = "created_at", nullable = false)
     private Instant createdAt = Instant.now();
 
+    @Column(nullable = false)
+    private String status = "UNKNOWN";
+
+    private Instant lastCheckedAt;
+
     public Edge() {}
 
     public UUID getId() { return id; }
@@ -64,4 +69,9 @@ public class Edge {
     public Instant getCreatedAt() { return createdAt; }
     public void setCreatedAt(Instant createdAt) { this.createdAt = createdAt; }
 
+    public String getStatus() {return status; }
+    public void setStatus(String status) { this.status = status; }
+
+    public Instant getLastCheckedAt() { return lastCheckedAt; }
+    public void setLastCheckedAt(Instant lastCheckedAt) { this.lastCheckedAt = lastCheckedAt; }
 }

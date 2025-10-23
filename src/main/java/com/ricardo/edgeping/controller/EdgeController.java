@@ -33,10 +33,16 @@ public class EdgeController {
         return edgeService.create(edge);
     }
 
-    // List all edges
+    /**
+     * If the user calls /api/v1/edges, it returns all records.
+     * If the user calls /api/v1/edges?status=UP, it filters.
+     */
     @GetMapping
-    public List<Edge> findAll() {
-        return edgeService.findAllEdges();
+    public ResponseEntity<List<Edge>> findAll(@RequestParam(required = false) String status) {
+        if(status != null && !status.isBlank()) {
+            return ResponseEntity.ok(edgeService.getEdgeByStatus(status));
+        }
+        return ResponseEntity.ok(edgeService.findAllEdges());
     }
 
     // Get a specific edge by id

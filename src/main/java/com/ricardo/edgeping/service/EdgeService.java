@@ -56,4 +56,8 @@ public class EdgeService {
                   return edgeRepository.save(existingEdge);
               });
     }
+
+    public List<Edge> getEdgeByStatus(String status) {
+        return edgeRepository.findByStatus(status.toUpperCase());
+    }
 }
